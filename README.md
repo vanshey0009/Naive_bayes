@@ -299,21 +299,57 @@ Displays the most common words found in spam messages.
  ## Step 15: Real-Time Prediction
 
 ```python
-while True:
 
-    sms = input("Enter Message: ")
 
-    if sms.lower() == "exit":
-        break
 
-    vector = vectorizer.transform([sms])
+if len(sms.split()) < 2:
 
-    result = model.predict(vector)[0]
+    result = "⚠ MESSAGE TOO SHORT"
+    color = "#fd7e14"
 
-    if result == 1:
-        print("🚨 SPAM MESSAGE")
+    info = """
+    <h3>⚠ Short Message Warning</h3>
+
+    Please enter a longer message for accurate prediction.<br>
+
+    ✔ Minimum 2-3 words recommended<br>
+    ✔ More text improves prediction accuracy<br>
+    ✔ Try entering a complete sentence
+    """
+
+else:
+
+    prediction = clf.predict(input_label)[0]
+
+    if prediction == 0:
+
+        result = "✅ HAM MESSAGE"
+        color = "green"
+
+        info = """
+        <h3>🌟 Advantages</h3>
+
+        ✔ Your text appears safe<br>
+        ✔ Trusted Sender Content<br>
+        ✔ No Suspicious Links Detected<br>
+        ✔ Low Security Risk<br>
+        ✔ Safe for Communication
+        """
+
     else:
-        print("✅ HAM MESSAGE")
+
+        result = "🚨 SPAM MESSAGE"
+        color = "red"
+
+        info = """
+        <h3>🛡 Security Precautions</h3>
+
+        ⚠ Do Not Click Unknown Links<br>
+        ⚠ Never Share OTP<br>
+        ⚠ Never Share Passwords<br>
+        ⚠ Verify Sender Identity<br>
+        ⚠ Report Suspicious Messages
+        """
 ```
 
  Explanation
