@@ -58,7 +58,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 ## Step 2: Load Dataset
 
 ```python
-df = pd.read_csv("spam.csv", encoding="latin-1")
+df = pd.read_csv("train.csv", encoding="latin-1")
 ```
 
 Explanation
