@@ -103,14 +103,14 @@ if st.button("🔍 Analyze Message"):
 
            if prediction == 0:
 
-                result = "✅ HAM MESSAGE"
+                  result = "✅ HAM MESSAGE"
                   color = "green"
 
-                 info = """
+                  info = """
                       <div style="
-                 background:#e8f5e9;
-                     padding:15px;
-                    border-radius:10px;
+                      background:#e8f5e9;
+                      padding:15px;
+                       border-radius:10px;
                         ">
 
                          <h3>🌟 Message Analysis</h3>
