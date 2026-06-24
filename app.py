@@ -66,21 +66,21 @@ st.info("""
 elif page == "📊 Model Information":
 
 
-st.title("📊 Model Information")
+   st.title("📊 Model Information")
 
-st.subheader("Algorithm Used")
+   st.subheader("Algorithm Used")
 
-st.code("""
-
-
-from sklearn.naive_bayes import MultinomialNB
-
-clf = MultinomialNB()
-clf.fit(X_train_counts, y_train)
-""")
+  st.code("""
 
 
-st.success("Model : Multinomial Naive Bayes")
+  from sklearn.naive_bayes import MultinomialNB
+
+  clf = MultinomialNB()
+   clf.fit(X_train_counts, y_train)
+  """)
+
+
+  st.success("Model : Multinomial Naive Bayes")
 
 st.subheader("Workflow")
 
@@ -104,13 +104,13 @@ st.write("""
 elif page == "📩 Spam Detection":
 
 
-st.title("📩 SMS Spam Detection")
+    st.title("📩 SMS Spam Detection")
 
-sms = st.text_area(
+  sms = st.text_area(
     "Enter SMS Message",
     height=200,
     placeholder="Type your SMS here..."
-)
+    )
 
 if st.button("🔍 Analyze Message"):
 
