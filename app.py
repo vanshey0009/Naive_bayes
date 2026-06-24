@@ -59,7 +59,7 @@ st.info("""
 
 • Fast and Accurate Prediction
 """)
-```
+
 
 # MODEL PAGE
 
