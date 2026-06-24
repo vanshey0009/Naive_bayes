@@ -3,119 +3,192 @@ import pickle
 import time
 
 # Load model and vectorizer
+
 model = pickle.load(open("spam_model.pkl", "rb"))
 vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
-st.set_page_config(page_title="SMS Spam Detection", page_icon="📧", layout="centered")
+st.set_page_config(
+page_title="SMS Spam Detection",
+page_icon="📧",
+layout="wide"
+)
 
-# Header
+# Sidebar
+
+st.sidebar.title("📋 Navigation")
+
+page = st.sidebar.radio(
+"Select Page",
+[
+"🏠 Home",
+"📊 Model Information",
+"📩 Spam Detection",
+"👨‍💻 Developer"
+]
+)
+
+# HOME PAGE
+
+if page == "🏠 Home":
+
+```
 st.markdown("""
 <div style="
 padding:30px;
 text-align:center;
 background:linear-gradient(135deg,#4facfe,#00f2fe);
 color:white;
-border-radius:20px;
-">
-
+border-radius:20px;">
 <h1>📧 SMS Spam Detection System</h1>
 <h3>Machine Learning Based Text Analytics</h3>
-
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.write("")
 
-# Instructions Card
-st.markdown("""
-<div style="
-background:white;
-padding:20px;
-border-radius:15px;
-box-shadow:0px 0px 10px rgba(0,0,0,0.1);
-">
+st.info("""
+📌 Project Overview
 
-<h3>📌 Instructions</h3>
+• Detects Spam and Ham SMS Messages
 
-📩 Enter your SMS below<br><br>
+• Uses Machine Learning
 
-🚪 Type <b>exit</b> to quit<br><br>
+• Built using Multinomial Naive Bayes
 
-🔒 Never share sensitive information online
+• Feature Extraction using CountVectorizer
 
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-# Input Box
-sms = st.text_area("📩 Enter Message")
-
-if st.button("Predict"):
-
-    with st.spinner("🤖 Processing Message..."):
-        time.sleep(1)
-
-    input_label = vectorizer.transform([sms])
-
-    if len(sms.split()) < 2:
-
-        st.warning("⚠ MESSAGE TOO SHORT")
-
-        st.markdown("""
-### ⚠ Short Message Warning
-
-✔ Minimum 2-3 words recommended
-
-✔ More text improves prediction accuracy
-
-✔ Try entering a complete sentence
+• Fast and Accurate Prediction
 """)
+```
+
+# MODEL PAGE
+
+elif page == "📊 Model Information":
+
+```
+st.title("📊 Model Information")
+
+st.subheader("Algorithm Used")
+
+st.code("""
+```
+
+from sklearn.naive_bayes import MultinomialNB
+
+clf = MultinomialNB()
+clf.fit(X_train_counts, y_train)
+""")
+
+```
+st.success("Model : Multinomial Naive Bayes")
+
+st.subheader("Workflow")
+
+st.write("""
+1. Load Dataset
+
+2. Clean Text
+
+3. Convert Text to Numbers using CountVectorizer
+
+4. Train Naive Bayes Model
+
+5. Predict Spam/Ham
+
+6. Evaluate Accuracy
+""")
+```
+
+# PREDICTION PAGE
+
+elif page == "📩 Spam Detection":
+
+```
+st.title("📩 SMS Spam Detection")
+
+sms = st.text_area(
+    "Enter SMS Message",
+    height=200,
+    placeholder="Type your SMS here..."
+)
+
+if st.button("🔍 Analyze Message"):
+
+    if not sms.strip():
+
+        st.warning("Please enter a valid message.")
 
     else:
 
-        prediction = model.predict(input_label)[0]
+        with st.spinner("🤖 Processing Message..."):
+            time.sleep(1)
 
-        if prediction == 0:
+        input_label = vectorizer.transform([sms])
 
-            st.success("✅ HAM MESSAGE")
+        if len(sms.split()) < 2:
 
-            st.markdown(f"""
-### 📨 Message
-
-{sms}
-
-### 🌟 Advantages
-
-✔ Your text appears safe
-
-✔ Trusted Sender Content
-
-✔ No Suspicious Links Detected
-
-✔ Low Security Risk
-
-✔ Safe for Communication
-""")
+            st.warning("⚠ MESSAGE TOO SHORT")
 
         else:
 
-            st.error("🚨 SPAM MESSAGE")
+            prediction = model.predict(input_label)[0]
 
-            st.markdown(f"""
-### 📨 Message
+            if prediction == 0:
 
-{sms}
+                st.success("✅ HAM MESSAGE")
 
-### 🛡 Security Precautions
+                st.markdown(f"""
+                ### 📨 Message
 
-⚠ Do Not Click Unknown Links
+                {sms}
 
-⚠ Never Share OTP
+                ### 🌟 Advantages
 
-⚠ Never Share Passwords
+                ✔ Trusted Sender Content
 
-⚠ Verify Sender Identity
+                ✔ No Suspicious Links Detected
 
-⚠ Report Suspicious Messages
-""")
+                ✔ Low Security Risk
+
+                ✔ Safe Communication
+                """)
+
+            else:
+
+                st.error("🚨 SPAM MESSAGE")
+
+                st.markdown(f"""
+                ### 📨 Message
+
+                {sms}
+
+                ### 🛡 Security Precautions
+
+                ⚠ Do Not Click Unknown Links
+
+                ⚠ Never Share OTP
+
+                ⚠ Never Share Passwords
+
+                ⚠ Verify Sender Identity
+
+                ⚠ Report Suspicious Messages
+                """)
+```
+
+# DEVELOPER PAGE
+
+elif page == "👨‍💻 collage project":
+
+```
+
+st.write("Project Name : SMS Spam Detection System")
+
+st.write("Algorithm : Multinomial Naive Bayes")
+
+
+
+st.write("Dataset : SMS Spam Collection Dataset")
+
+st.success("Developed as NTCC / PBEL Project")
+```
