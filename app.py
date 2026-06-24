@@ -143,17 +143,8 @@ if st.button("🔍 Analyze Message"):
         background:white;
         ">
 
-        <h1 style="color:{color};text-align:center;">
-        {result}
-        </h1>
-
-        <hr>
-
-        <h3>📨 Message</h3>
-
-        <p>{sms}</p>
-
-        <h3>📋 THINGS YOU SHOULD KNOW ABOUT THIS TEXT</h3>
+        
+        📋 THINGS YOU SHOULD KNOW ABOUT THIS TEXT
 
         {info}
 
