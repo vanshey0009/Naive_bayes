@@ -46,7 +46,7 @@ border-radius:15px;
 
 📩 Enter your SMS below
 
-🚪 Type <b>exit</b> to close end syatem <br>
+🚪 Type <b>exit</b> to close system <br>
 
 🔒 Never share sensitive information online
 
