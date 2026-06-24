@@ -2,25 +2,23 @@ import streamlit as st
 import pickle
 import time
 
-# Load model and vectorizer
+# Load Model
 with open("spam_model.pkl", "rb") as f:
     clf = pickle.load(f)
 
 with open("vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 
-# Page Config
+# Page Settings
 st.set_page_config(
     page_title="SMS Spam Detection System",
     page_icon="📧",
     layout="centered"
 )
 
-# Header Section
+# Header
 st.markdown("""
 <div style="
-width:80%;
-margin:auto;
 padding:30px;
 text-align:center;
 background:linear-gradient(135deg,#4facfe,#00f2fe);
@@ -33,31 +31,23 @@ font-family:Arial;
 
 <h3>Machine Learning Based Text Analytics</h3>
 
-<div style="
-background:white;
-color:black;
-padding:15px;
-border-radius:15px;
-">
-
-📌 Instructions
-
-<br><br>
-
-📩 Enter your SMS below
-
-🚪 Type <b>exit</b> to close system <br>
-
-🔒 Never share sensitive information online
-
-</div>
-
 </div>
 """, unsafe_allow_html=True)
 
 st.write("")
 
-# Input
+# Instructions
+st.info("""
+📌 Instructions
+
+📩 Enter your SMS message below
+
+🚪 Type 'exit' to quite
+
+🔒 Never share sensitive information online
+""")
+
+# Input Box
 sms = st.text_area(
     "📩 Enter Message",
     height=150,
@@ -66,14 +56,15 @@ sms = st.text_area(
 
 # Exit Option
 if sms.lower().strip() == "exit":
-    st.success("👋 Thank You! Session Ended Successfully")
+    st.success("👋 Thank you for using the SMS Spam Detection System")
     st.stop()
 
-# Analyze Button
+# Prediction Button
 if st.button("🔍 Analyze Message"):
 
     if not sms.strip():
-        st.warning("Please enter a message.")
+
+        st.warning("Please enter a valid message.")
 
     else:
 
@@ -83,86 +74,68 @@ if st.button("🔍 Analyze Message"):
         input_label = vectorizer.transform([sms])
         prediction = clf.predict(input_label)[0]
 
-        # Message Too Short
         if len(sms.split()) < 2:
 
-            result = "⚠ MESSAGE TOO SHORT"
-            color = "#fd7e14"
+            st.warning("⚠ Message Too Short")
 
-            info = """
-            ⚠ Short Message Warning
+            st.markdown("""
+### Message Recommendation
 
-            Please enter a longer message for accurate prediction.
+✔ Enter at least 2–3 words
 
-            ✔ Minimum 2-3 words recommended
-            ✔ More text improves prediction accuracy
-            ✔ Try entering a complete sentence
-            """
+✔ Longer messages improve prediction accuracy
+
+✔ Use a complete sentence whenever possible
+""")
 
         else:
 
-           if prediction == 0:
+            if prediction == 0:
 
-                  result = "✅ HAM MESSAGE"
-                  color = "green"
+                st.success("✅ HAM MESSAGE")
 
-                  info = """
-                      <div style="
-                      background:#e8f5e9;
-                      padding:15px;
-                       border-radius:10px;
-                        ">
+                st.markdown(f"""
+### 📨 Message
 
-                         <h3>🌟 Message Analysis</h3>
+{sms}
 
-                         ✔ Safe message detected<br>
-                         ✔ Trusted sender content<br>
-                         ✔ No suspicious links detected<br>
-                         ✔ Low security risk<br>
-                         ✔ Safe for communication<br>
-                         ✔ Normal conversational text
+### 📊 Message Analysis Report
 
-                          </div>
-                           """
+✔ Safe message detected
+
+✔ Trusted sender content
+
+✔ No suspicious links detected
+
+✔ Low security risk
+
+✔ Safe for communication
+
+✔ Normal conversational text
+""")
 
             else:
 
-                result = "🚨 SPAM MESSAGE"
-                color = "red"
+                st.error("🚨 SPAM MESSAGE")
 
-                info = """
-                🛡 Security Precautions
+                st.markdown(f"""
+### 📨 Message
 
-                ⚠ Do Not Click Unknown Links
-                ⚠ Never Share OTP
-                ⚠ Never Share Passwords
-                ⚠ Verify Sender Identity
-                ⚠ Report Suspicious Messages
-                """
+{sms}
 
-        # Result Card
-        st.markdown(f"""
-        <div style="
-        width:80%;
-        margin:auto;
-        padding:30px;
-        border-radius:20px;
-        border:4px solid {color};
-        font-family:Arial;
-        background:white;
-        ">
+### 🛡 Security Recommendations
 
-        
-        📋 THINGS YOU SHOULD KNOW ABOUT THIS TEXT
+⚠ Do not click unknown links
 
-        {info}
+⚠ Never share OTPs
 
-        </div>
-        """, unsafe_allow_html=True)
+⚠ Never share passwords
 
-# Footer
-st.markdown("---")
-st.markdown(
-    "<center><h4>📧 SMS Spam Detection System</h4></center>",
-    unsafe_allow_html=True
-)
+⚠ Verify the sender's identity
+
+⚠ Report suspicious messages
+""")
+
+st.write("")
+
+st.caption("SMS Spam Detection System | Machine Learning Project using Naive Bayes")
