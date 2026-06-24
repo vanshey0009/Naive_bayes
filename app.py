@@ -32,17 +32,17 @@ page = st.sidebar.radio(
 if page == "🏠 Home":
 
 
-st.markdown("""
-<div style="
-padding:30px;
-text-align:center;
-background:linear-gradient(135deg,#4facfe,#00f2fe);
-color:white;
-border-radius:20px;">
-<h1>📧 SMS Spam Detection System</h1>
-<h3>Machine Learning Based Text Analytics</h3>
-</div>
-""", unsafe_allow_html=True)
+  st.markdown("""
+   <div style="
+    padding:30px;
+    text-align:center;
+   background:linear-gradient(135deg,#4facfe,#00f2fe);
+    color:white;
+    border-radius:20px;">
+   <h1>📧 SMS Spam Detection System</h1>
+  <h3>Machine Learning Based Text Analytics</h3>
+  </div>
+  """, unsafe_allow_html=True)
 
 st.write("")
 
