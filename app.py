@@ -44,7 +44,7 @@ border-radius:15px;
 
 <br><br>
 
-📩 Enter your SMS below<br>
+📩 Enter your SMS below
 🚪 Type <b>exit</b> to quit<br>
 🔒 Never share sensitive information online
 
@@ -88,12 +88,12 @@ if st.button("🔍 Analyze Message"):
             color = "#fd7e14"
 
             info = """
-            <h3>⚠ Short Message Warning</h3>
+            ⚠ Short Message Warning
 
-            Please enter a longer message for accurate prediction.<br><br>
+            Please enter a longer message for accurate prediction.
 
-            ✔ Minimum 2-3 words recommended<br>
-            ✔ More text improves prediction accuracy<br>
+            ✔ Minimum 2-3 words recommended
+            ✔ More text improves prediction accuracy
             ✔ Try entering a complete sentence
             """
 
@@ -105,12 +105,12 @@ if st.button("🔍 Analyze Message"):
                 color = "green"
 
                 info = """
-                <h3>🌟 Advantages</h3>
+                🌟 Advantages
 
-                ✔ Your text appears safe<br>
-                ✔ Trusted Sender Content<br>
-                ✔ No Suspicious Links Detected<br>
-                ✔ Low Security Risk<br>
+                ✔ Your text appears safe
+                ✔ Trusted Sender Content
+                ✔ No Suspicious Links Detected
+                ✔ Low Security Risk
                 ✔ Safe for Communication
                 """
 
@@ -120,12 +120,12 @@ if st.button("🔍 Analyze Message"):
                 color = "red"
 
                 info = """
-                <h3>🛡 Security Precautions</h3>
+                🛡 Security Precautions
 
-                ⚠ Do Not Click Unknown Links<br>
-                ⚠ Never Share OTP<br>
-                ⚠ Never Share Passwords<br>
-                ⚠ Verify Sender Identity<br>
+                ⚠ Do Not Click Unknown Links
+                ⚠ Never Share OTP
+                ⚠ Never Share Passwords
+                ⚠ Verify Sender Identity
                 ⚠ Report Suspicious Messages
                 """
 
