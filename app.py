@@ -31,7 +31,7 @@ page = st.sidebar.radio(
 
 if page == "🏠 Home":
 
-```
+
 st.markdown("""
 <div style="
 padding:30px;
@@ -65,13 +65,13 @@ st.info("""
 
 elif page == "📊 Model Information":
 
-```
+
 st.title("📊 Model Information")
 
 st.subheader("Algorithm Used")
 
 st.code("""
-```
+
 
 from sklearn.naive_bayes import MultinomialNB
 
@@ -79,7 +79,7 @@ clf = MultinomialNB()
 clf.fit(X_train_counts, y_train)
 """)
 
-```
+
 st.success("Model : Multinomial Naive Bayes")
 
 st.subheader("Workflow")
@@ -97,13 +97,13 @@ st.write("""
 
 6. Evaluate Accuracy
 """)
-```
+
 
 # PREDICTION PAGE
 
 elif page == "📩 Spam Detection":
 
-```
+
 st.title("📩 SMS Spam Detection")
 
 sms = st.text_area(
@@ -174,13 +174,13 @@ if st.button("🔍 Analyze Message"):
 
                 ⚠ Report Suspicious Messages
                 """)
-```
+
 
 # DEVELOPER PAGE
 
 elif page == "👨‍💻 collage project":
 
-```
+
 
 st.write("Project Name : SMS Spam Detection System")
 
@@ -191,4 +191,4 @@ st.write("Algorithm : Multinomial Naive Bayes")
 st.write("Dataset : SMS Spam Collection Dataset")
 
 st.success("Developed as NTCC / PBEL Project")
-```
+
