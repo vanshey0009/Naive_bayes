@@ -101,20 +101,29 @@ if st.button("🔍 Analyze Message"):
 
         else:
 
-            if prediction == 0:
+           if prediction == 0:
 
                 result = "✅ HAM MESSAGE"
-                color = "green"
+                  color = "green"
 
-                info = """
-                🌟 Advantages
+                 info = """
+                      <div style="
+                 background:#e8f5e9;
+                     padding:15px;
+                    border-radius:10px;
+                        ">
 
-                ✔ Your text appears safe
-                ✔ Trusted Sender Content
-                ✔ No Suspicious Links Detected
-                ✔ Low Security Risk
-                ✔ Safe for Communication
-                """
+                         <h3>🌟 Message Analysis</h3>
+
+                         ✔ Safe message detected<br>
+                         ✔ Trusted sender content<br>
+                         ✔ No suspicious links detected<br>
+                         ✔ Low security risk<br>
+                         ✔ Safe for communication<br>
+                         ✔ Normal conversational text
+
+                          </div>
+                           """
 
             else:
 
