@@ -559,6 +559,8 @@ https://naivebayes-6lpwlj6ouxccek5cbhkz3m.streamlit.app/
 
 ### student 
 Name: vanshey khari 
+
 corse:	B.Tech CSE  (IoT and Cyber Sec. inc BCT)
+
 collage : Amity University Uttar Pradesh, Noida
 
