@@ -411,5 +411,11 @@ Real-Time Spam Detection
 This workflow demonstrates the complete Machine Learning pipeline for SMS Spam Detection using Natural Language Processing (NLP) and the Multinomial Naive Bayes algorithm.
 
 
+### project link 
+https://naivebayes-6lpwlj6ouxccek5cbhkz3m.streamlit.app/
 
+### student 
+Name: vanshey khari 
+corse:	B.Tech CSE  (IoT and Cyber Sec. inc BCT)
+collage : Amity University Uttar Pradesh, Noida
 
