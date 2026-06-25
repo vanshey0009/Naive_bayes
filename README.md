@@ -302,54 +302,197 @@ Displays the most common words found in spam messages.
 
 
 
-if len(sms.split()) < 2:
+from IPython.display import HTML, display, clear_output
 
-    result = "⚠ MESSAGE TOO SHORT"
-    color = "#fd7e14"
+import time
 
-    info = """
-    <h3>⚠ Short Message Warning</h3>
+# Header
+display(HTML("""
+<div style="
+padding:30px;
+text-align:center;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+color:white;
+border-radius:20px;
+font-family:Arial;
+margin-bottom:20px;
+">
+<h1>📧 SMS Spam Detection System</h1>
+<h3>Machine Learning Based Text Analytics</h3>
+</div>
+"""))
 
-    Please enter a longer message for accurate prediction.<br>
+# Instructions
+display(HTML("""
+<div style="
+background:#eaf6ff;
+padding:15px;
+border-left:6px solid #2196F3;
+border-radius:10px;
+font-family:Arial;
+margin-bottom:20px;
+">
+<h3>📌 Instructions</h3>
+<p>📩 Enter your SMS message below</p>
+<p>🚪 Type <b>exit</b> to quit</p>
+<p>🔒 Never share sensitive information online</p>
+</div>
+"""))
 
-    ✔ Minimum 2-3 words recommended<br>
-    ✔ More text improves prediction accuracy<br>
-    ✔ Try entering a complete sentence
-    """
+while True:
 
-else:
+    sms = input("📩 Enter Message: ")
 
+    if sms.lower().strip() == "exit":
+
+        display(HTML("""
+        <div style="
+        background:#d4edda;
+        color:#155724;
+        padding:15px;
+        border-radius:10px;
+        margin-top:15px;
+        font-family:Arial;
+        ">
+        👋 Thank you for using the SMS Spam Detection System
+        </div>
+        """))
+
+        break
+
+    if not sms.strip():
+
+        display(HTML("""
+        <div style="
+        background:#fff3cd;
+        color:#856404;
+        padding:15px;
+        border-radius:10px;
+        margin-top:15px;
+        font-family:Arial;
+        ">
+        ⚠ Please enter a valid message.
+        </div>
+        """))
+
+        continue
+
+    display(HTML("""
+    <div style="
+    background:#f8f9fa;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    font-family:Arial;
+    ">
+    🤖 Processing Message...
+    </div>
+    """))
+
+    time.sleep(1)
+
+    input_label = vectorizer.transform([sms])
     prediction = clf.predict(input_label)[0]
 
-    if prediction == 0:
+    if len(sms.split()) < 2:
 
-        result = "✅ HAM MESSAGE"
-        color = "green"
+        display(HTML("""
+        <div style="
+        background:#fff3cd;
+        color:#856404;
+        padding:20px;
+        border-radius:10px;
+        margin-top:15px;
+        font-family:Arial;
+        ">
+        <h3>⚠ Message Too Short</h3>
 
-        info = """
-        <h3>🌟 Advantages</h3>
+        <h4>Message Recommendation</h4>
 
-        ✔ Your text appears safe<br>
-        ✔ Trusted Sender Content<br>
-        ✔ No Suspicious Links Detected<br>
-        ✔ Low Security Risk<br>
-        ✔ Safe for Communication
-        """
+        ✔ Enter at least 2–3 words<br><br>
+
+        ✔ Longer messages improve prediction accuracy<br><br>
+
+        ✔ Use a complete sentence whenever possible
+        </div>
+        """))
 
     else:
 
-        result = "🚨 SPAM MESSAGE"
-        color = "red"
+        if prediction == 0:
 
-        info = """
-        <h3>🛡 Security Precautions</h3>
+            display(HTML(f"""
+            <div style="
+            background:#d4edda;
+            color:#155724;
+            padding:20px;
+            border-radius:10px;
+            margin-top:15px;
+            font-family:Arial;
+            ">
+            <h2>✅ HAM MESSAGE</h2>
 
-        ⚠ Do Not Click Unknown Links<br>
-        ⚠ Never Share OTP<br>
-        ⚠ Never Share Passwords<br>
-        ⚠ Verify Sender Identity<br>
-        ⚠ Report Suspicious Messages
-        """
+            <h3>📨 Message</h3>
+
+            <p>{sms}</p>
+
+            <h3>📊 Message Analysis Report</h3>
+
+            ✔ Safe message detected<br><br>
+
+            ✔ Trusted sender content<br><br>
+
+            ✔ No suspicious links detected<br><br>
+
+            ✔ Low security risk<br><br>
+
+            ✔ Safe for communication<br><br>
+
+            ✔ Normal conversational text
+            </div>
+            """))
+
+        else:
+
+            display(HTML(f"""
+            <div style="
+            background:#f8d7da;
+            color:#721c24;
+            padding:20px;
+            border-radius:10px;
+            margin-top:15px;
+            font-family:Arial;
+            ">
+            <h2>🚨 SPAM MESSAGE</h2>
+
+            <h3>📨 Message</h3>
+
+            <p>{sms}</p>
+
+            <h3>🛡 Security Recommendations</h3>
+
+            ⚠ Do not click unknown links<br><br>
+
+            ⚠ Never share OTPs<br><br>
+
+            ⚠ Never share passwords<br><br>
+
+            ⚠ Verify the sender's identity<br><br>
+
+            ⚠ Report suspicious messages
+            </div>
+            """))
+
+display(HTML("""
+<div style="
+text-align:center;
+margin-top:20px;
+font-family:Arial;
+color:gray;
+">
+SMS Spam Detection System | Machine Learning Project using Naive Bayes
+</div>
+"""))
 ```
 
  Explanation
